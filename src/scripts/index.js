@@ -35,6 +35,8 @@ const getCountryData = async countryName => {
       flag: data.flags.png,
       population: data.population,
       region: data.region,
+
+      map: data.maps.googleMaps,
       ...(data.borders && { borders: data.borders }),
       ...(data.capital && { capital: data.capital[0] }),
     };
@@ -53,6 +55,7 @@ inputField.addEventListener('input', e => {
   state.countries.forEach(ele => {
     if (ele.name.toLowerCase().startsWith(value.toLowerCase())) {
       const p = document.createElement('p');
+      p.className = 'search-result';
       p.textContent = ele.name;
       searchMatch.append(p);
     }
@@ -70,3 +73,9 @@ searchMatch.addEventListener('click', e => {
   searchMatch.innerHTML = '';
   // fetch request and modal with all info
 });
+
+const countries = document.querySelector('.countries');
+const cardTemplate = document.querySelector('[data-card-template]');
+const clone = cardTemplate.content.cloneNode(true).children[0];
+
+countries.append(clone);

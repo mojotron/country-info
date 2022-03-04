@@ -63,27 +63,32 @@ body {
   background: var(--white);
   overflow-y: scroll;
 }
-p {
+.search-result {
   color: var(--dark-green);
   font-size: 2.5rem;
   padding-left: 1.5rem;
   cursor: pointer;
 }
-p:hover {
+.search-result:hover {
   background-color: var(--black-green);
   color: var(--white);
 }
 /* COUNTRIES WRAPPER */
 .countries {
   height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* COUNTRY CARD*/
 .country {
   display: grid;
-  height: 30vmin;
-  width: 30vmin;
+  height: 70vmin;
+  width: 70vmin;
+  min-height: 350px;
+  min-width: 300px;
   box-shadow: 1px 2px 10px black;
-  grid-template-rows: 1.5fr 1fr;
+  grid-template-rows: 1fr 2.5fr 1fr;
   grid-template-columns: 1fr;
   margin: 1rem;
 }
@@ -92,19 +97,47 @@ p:hover {
   background-size: cover;
   background-position: center center;
 }
+.country__map {
+  grid-area: 2 / 1 / 3 / 2;
+}
 .country__info {
-  grid-area: 2 / 1 / 2 / 2;
+  grid-area: 3 / 1 / 4 / 2;
   font-size: 2rem;
   letter-spacing: 1.2px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
 }
 .country__info__name {
+  height: 30%;
+  font-size: 3.5rem;
+  padding-left: 2rem;
 }
-.country__info__region {
+.country__info__borders {
+  height: 30%;
+  background-color: aqua;
 }
-.country__info__population {
+.country__info__footer {
+  background-color: var(--white);
+  color: var(--black-green);
+  height: 40%;
+  display: flex;
+  justify-content: space-evenly;
 }
-.country__info__neighbors {
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gmap_canvas {
+  height: 100%;
+  width: 100%;
+}
+.mapouter {
+  height: 100%;
+  width: 100%;
+}
+iframe {
+  height: 100%;
+  width: 100%;
 }

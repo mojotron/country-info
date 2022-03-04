@@ -24,14 +24,57 @@
       <main class="countries"></main>
     </div>
 
-    <template>
+    <template data-card-template>
       <div class="country">
         <div class="country__flag"></div>
+        <div class="country__map">
+          <div class="mapouter">
+            <div class="gmap_canvas">
+              <iframe
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe
+              ><a href="https://fmovies-online.net">fmovies</a><br /><style>
+                .mapouter {
+                  position: relative;
+                  text-align: right;
+                  height: 500px;
+                  width: 600px;
+                }</style
+              ><a href="https://www.embedgooglemap.net"
+                >responsive google map embed</a
+              ><style>
+                .gmap_canvas {
+                  overflow: hidden;
+                  background: none !important;
+                  height: 500px;
+                  width: 600px;
+                }
+              </style>
+            </div>
+          </div>
+        </div>
         <div class="country__info">
-          <p>name: <span class="country__info__name"></span></p>
-          <p>region: <span class="country__info__region"></span></p>
-          <p>population: <span class="country__info__population"></span></p>
-          <p>neighbors: <span class="country__info__neighbors"></span></p>
+          <div class="country__info__name">Croatia</div>
+          <div class="country__info__borders"></div>
+          <div class="country__info__footer">
+            <div class="footer__section">
+              <p class="">Population</p>
+              <p>4000000</p>
+            </div>
+            <div class="footer__section">
+              <p>Region</p>
+              <p>Europe</p>
+            </div>
+            <div class="footer__section">
+              <p>Capital</p>
+              <p>Zagreb</p>
+            </div>
+          </div>
         </div>
       </div>
     </template>
