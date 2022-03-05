@@ -1,20 +1,47 @@
 import '../styles/main.css';
 
-const URL_API = `https://restcountries.com/v3.1/all?fields=flags,name`;
+const URL_API = `https://restcountries.com/v3.1/all?fields=flags,name,cca3`;
 const state = {
   countries: [],
+  country: {},
 };
+const countries = document.querySelector('.countries');
+const cardTemplate = document.querySelector('[data-card-template]');
 
+const renderCountry = data => {
+  const clone = cardTemplate.content.cloneNode(true).children[0];
+  clone.querySelector('.country__info__name').textContent = data.name;
+  clone.querySelector('[data-population]').textContent = data.population;
+  clone.querySelector('[data-region]').textContent = data.region;
+  clone.querySelector('[data-capital]').textContent = data.capital ?? 'X';
+  //
+  data.borders.forEach(x => {
+    const temp = document.createElement('div');
+    temp.className = 'test';
+    const obj = state.countries.find(ele => ele.code === x);
+    temp.style.setProperty('background-image', `url(${obj.flag})`);
+    clone.querySelector('[data-borders]').append(temp);
+  });
+  clone
+    .querySelector('[data-flag]')
+    .style.setProperty('background-image', `url(${data.flag})`);
+  // clone.querySelector('[data-borders]').textContent = data.borders.join(' ');
+  countries.innerHTML = '';
+
+  countries.append(clone);
+  console.log(data);
+};
 const getData = async url => {
   try {
     const response = await fetch(url);
     const data = await response.json();
     state.countries = await data.map(element => {
       const {
-        flags: { png: flagSrc },
+        flags: { png: flag },
         name: { common: name },
+        cca3: code,
       } = element;
-      return { name, flagSrc };
+      return { name, flag, code };
     });
   } catch (error) {
     console.log(error);
@@ -29,8 +56,8 @@ const getCountryData = async countryName => {
       `https://restcountries.com/v3.1/name/${countryName}`
     );
     const [data] = await response.json();
-    console.log(data);
-    const country = {
+
+    state.country = {
       name: data.name.common,
       flag: data.flags.png,
       population: data.population,
@@ -40,7 +67,8 @@ const getCountryData = async countryName => {
       ...(data.borders && { borders: data.borders }),
       ...(data.capital && { capital: data.capital[0] }),
     };
-    console.log(country);
+
+    renderCountry(state.country);
   } catch (error) {
     console.log(error);
   }
@@ -71,11 +99,4 @@ searchMatch.addEventListener('click', e => {
   const country = e.target.closest('p');
   getCountryData(country.textContent);
   searchMatch.innerHTML = '';
-  // fetch request and modal with all info
 });
-
-const countries = document.querySelector('.countries');
-const cardTemplate = document.querySelector('[data-card-template]');
-const clone = cardTemplate.content.cloneNode(true).children[0];
-
-countries.append(clone);
