@@ -55,6 +55,7 @@ body {
   margin-left: 2rem;
 }
 .search-match {
+  z-index: 2;
   margin-left: 2rem;
   margin-top: 0.1rem;
   width: 25rem;
@@ -82,13 +83,14 @@ body {
 }
 /* COUNTRY CARD*/
 .country {
+  z-index: 1;
   display: grid;
   height: 70vmin;
   width: 70vmin;
   min-height: 350px;
   min-width: 300px;
   box-shadow: 1px 2px 10px black;
-  grid-template-rows: 1fr 1.5fr 2.5fr;
+  grid-template-rows: 0.75fr 1.5fr 2fr;
   grid-template-columns: 1fr;
   margin: 1rem;
 }
@@ -99,7 +101,7 @@ body {
 }
 .country__flag {
   height: 100%;
-  width: 50%;
+  width: 40%;
   background-size: cover;
   background-position: center center;
   margin: 0.2rem;
@@ -121,9 +123,13 @@ body {
   justify-content: flex-end;
 }
 .country__info__name {
-  height: 30%;
-  font-size: 3.5rem;
+  height: 100%;
+  font-size: 5rem;
   padding-left: 2rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .country__info__borders {
   height: 30%;
@@ -136,6 +142,7 @@ body {
 }
 .boarders {
   width: 100%;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-evenly;
 }

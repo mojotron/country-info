@@ -2,13 +2,15 @@ import '../styles/main.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import * as Model from './model';
+import SearchView from './views/searchView';
+import MatchView from './views/matchView';
 
 const countries = document.querySelector('.countries');
 const cardTemplate = document.querySelector('[data-card-template]');
 
 const renderCountry = data => {
   const clone = cardTemplate.content.cloneNode(true).children[0];
-  clone.querySelector('.country__info__name').textContent = data.name;
+  clone.querySelector('[data-name]').textContent = data.name;
   clone.querySelector('[data-population]').textContent = data.population;
   clone.querySelector('[data-region]').textContent = data.region;
   clone.querySelector('[data-capital]').textContent = data.capital ?? 'X';
@@ -54,29 +56,24 @@ const getCountryData = async countryName => {
   }
 };
 
-const inputField = document.querySelector('input');
-const searchMatch = document.querySelector('.search-match');
+const controlSearchInput = value => {
+  const data = Model.state.countries
+    .filter(country =>
+      country.name.toLowerCase().startsWith(value.toLowerCase())
+    )
+    .map(country => country.name);
+  MatchView.matchResults(data);
+};
 
-inputField.addEventListener('input', e => {
-  searchMatch.innerHTML = '';
-  const { value } = e.target;
-  Model.state.countries.forEach(ele => {
-    if (ele.name.toLowerCase().startsWith(value.toLowerCase())) {
-      const p = document.createElement('p');
-      p.className = 'search-result';
-      p.textContent = ele.name;
-      searchMatch.append(p);
-    }
-  });
-});
+const controlSearch = value => {
+  MatchView.clearResults();
+  getCountryData(value);
+};
 
-document.querySelector('.header__search').addEventListener('submit', e => {
-  e.preventDefault();
-  getCountryData(document.querySelector('p').textContent);
-});
+const init = () => {
+  SearchView.addHandlerInput(controlSearchInput);
+  SearchView.addHandlerSubmit(controlSearch);
+  MatchView.addMatchClickHandler(controlSearch);
+};
 
-searchMatch.addEventListener('click', e => {
-  const country = e.target.closest('p');
-  getCountryData(country.textContent);
-  searchMatch.innerHTML = '';
-});
+init();

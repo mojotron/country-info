@@ -9,6 +9,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/no-extraneous-dependencies": "warn"
+    "import/no-extraneous-dependencies": "warn",
+    "class-methods-use-this": "warn"
   }
 }
