@@ -11,13 +11,17 @@ class SearchView {
     });
   }
 
+  clearInput() {
+    this.#inputElement.value = '';
+  }
+
   addHandlerSubmit(handler) {
     this.#parentElement.addEventListener('submit', e => {
       e.preventDefault();
-      const firstMatch = document.querySelector(
-        `.${MATCH_CLASS_NAME}`
-      ).textContent;
-      handler(firstMatch);
+      const firstMatch = document.querySelector(`.${MATCH_CLASS_NAME}`);
+      if (!firstMatch) return;
+      this.clearInput();
+      handler(firstMatch.textContent);
     });
   }
 }
