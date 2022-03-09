@@ -1,4 +1,4 @@
-import { URL_API, URL_API_ALL, URL_API_NAME } from './config';
+import { URL_API, URL_API_ALL, URL_API_ALPHA } from './config';
 
 export const state = {
   countries: [],
@@ -36,7 +36,7 @@ const loadAllCountries = async url => {
 
 export const loadTargetCountry = async country => {
   try {
-    const [data] = await getJSON(URL_API + URL_API_NAME + country);
+    const [data] = await getJSON(URL_API + URL_API_ALPHA + country);
 
     state.country = {
       name: data.name.common,

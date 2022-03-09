@@ -16,15 +16,14 @@ const loadAndRenderCountry = async countryName => {
 };
 
 const controlSearchInput = value => {
-  const data = Model.state.countries
-    .filter(country =>
-      country.name.toLowerCase().startsWith(value.toLowerCase())
-    )
-    .map(country => country.name);
+  const data = Model.state.countries.filter(country =>
+    country.name.toLowerCase().startsWith(value.toLowerCase())
+  );
   MatchView.matchResults(data);
 };
 
 const controlSearch = value => {
+  console.log('🪃', value);
   MatchView.clearResults();
   loadAndRenderCountry(value);
 };

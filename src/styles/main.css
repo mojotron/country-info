@@ -64,16 +64,7 @@ body {
   background: var(--white);
   overflow-y: scroll;
 }
-.search-result {
-  color: var(--dark-green);
-  font-size: 2.5rem;
-  padding-left: 1.5rem;
-  cursor: pointer;
-}
-.search-result:hover {
-  background-color: var(--black-green);
-  color: var(--white);
-}
+
 /* COUNTRIES WRAPPER */
 .countries {
   height: 85vh;
@@ -141,9 +132,11 @@ body {
 }
 .boarders {
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.5rem 0 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .country__info__footer {
   background-color: var(--white);
@@ -162,8 +155,19 @@ body {
 .border-country {
   height: 50px;
   width: 50px;
+  margin: 0 1rem 0.5rem;
   border: 5px solid var(--white);
   border-radius: 50%;
   background-size: cover;
   background-position: center center;
+}
+.search-result {
+  color: var(--dark-green);
+  font-size: 2.5rem;
+  padding-left: 1.5rem;
+  cursor: pointer;
+}
+.search-result:hover {
+  background-color: var(--black-green);
+  color: var(--white);
 }

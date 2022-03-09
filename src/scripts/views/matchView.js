@@ -13,14 +13,15 @@ class MatchView {
   addMatchClickHandler(handler) {
     this.#parentElement.addEventListener('click', e => {
       const value = e.target.closest(`.${MATCH_CLASS_NAME}`);
-      handler(value.textContent);
+      handler(value.dataset.countryCode);
     });
   }
 
-  #generateMatchElement(countryName) {
+  #generateMatchElement(country) {
     const element = document.createElement('p');
     element.className = MATCH_CLASS_NAME;
-    element.textContent = countryName;
+    element.textContent = country.name;
+    element.dataset.countryCode = country.code;
     return element;
   }
 

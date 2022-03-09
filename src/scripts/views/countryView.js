@@ -53,7 +53,7 @@ class CountryView {
         'background-image',
         `url(${countryObj.flag})`
       );
-      borderElement.dataset.countryName = countryObj.name.toLowerCase();
+      borderElement.dataset.countryCode = countryObj.code.toLowerCase();
       return borderElement;
     });
   }
@@ -76,7 +76,7 @@ class CountryView {
     this.#parentElement.addEventListener('click', e => {
       const border = e.target.closest('.border-country');
       if (!border) return;
-      handler(border.dataset.countryName);
+      handler(border.dataset.countryCode);
     });
   }
 }
