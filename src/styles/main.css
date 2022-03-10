@@ -84,6 +84,7 @@ body {
   grid-template-rows: 0.9fr 1fr 2fr;
   grid-template-columns: 1fr;
   margin: 1rem;
+  background: linear-gradient(25deg, var(--black-green), var(--dark-green));
 }
 .country__header {
   grid-area: 1 / 1 / 2 / 2;
@@ -163,6 +164,7 @@ body {
   border-radius: 50%;
   background-size: cover;
   background-position: center center;
+  cursor: pointer;
 }
 .search-result {
   color: var(--dark-green);
