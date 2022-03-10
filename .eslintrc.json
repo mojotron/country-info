@@ -10,6 +10,7 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": "warn",
-    "class-methods-use-this": "warn"
+    "class-methods-use-this": "warn",
+    "no-useless-catch": "off"
   }
 }

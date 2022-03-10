@@ -16,14 +16,22 @@ class CountryView {
     const card = this.#cloneTemplate();
     this.#parentElement.innerHTML = '';
     this.#parentElement.append(card);
-    this.#generateMap();
+    this.#generateMap(data);
+  }
+
+  renderError(errorMsg) {
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error';
+    errorElement.textContent = errorMsg;
+    this.#parentElement.append(errorElement);
   }
 
   #cloneTemplate() {
     const cloneTemp = this.#cardTemplate.content.cloneNode(true).children[0];
     cloneTemp.querySelector('[data-name]').textContent = this.#data.name;
-    cloneTemp.querySelector('[data-population]').textContent =
-      this.#data.population;
+    cloneTemp.querySelector(
+      '[data-population]'
+    ).textContent = `${this.#formatPopulation()}`;
     cloneTemp.querySelector('[data-region]').textContent = this.#data.region;
     cloneTemp.querySelector('[data-capital]').textContent =
       this.#data.capital ?? '\u2205';
@@ -42,6 +50,16 @@ class CountryView {
     return cloneTemp;
   }
 
+  #formatPopulation() {
+    if (this.#data.population > 1_000_000_000) {
+      return `${(this.#data.population / 1_000_000_000).toFixed(1)}B`;
+    }
+    if (this.#data.population > 1_000_000) {
+      return `${(this.#data.population / 1_000_000).toFixed(1)}M`;
+    }
+    return this.#data.population;
+  }
+
   #generateBorders() {
     return this.#data.borders.map(countryCode => {
       const borderElement = document.createElement('div');
@@ -58,7 +76,13 @@ class CountryView {
     });
   }
 
-  #generateMap() {
+  #generateMap(data) {
+    const icon = L.icon({
+      iconSize: [38, 95],
+      iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+      html: '',
+    });
     const map = L.map('map').setView(this.#data.coords, 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -66,9 +90,9 @@ class CountryView {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker(this.#data.coords)
+    L.marker(this.#data.coords, { draggable: true, icon: L.divIcon(icon) })
       .addTo(map)
-      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+      .bindPopup(`${data.name}`)
       .openPopup();
   }
 

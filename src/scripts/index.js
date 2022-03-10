@@ -9,10 +9,11 @@ const loadAndRenderCountry = async countryName => {
   try {
     await Model.loadTargetCountry(countryName);
     CountryView.render(Model.state.country, Model.state.countries);
-    SearchView.clearInput();
   } catch (error) {
     console.log(error);
+    CountryView.renderError(error.message);
   }
+  SearchView.clearInput();
 };
 
 const controlSearchInput = value => {
@@ -23,7 +24,6 @@ const controlSearchInput = value => {
 };
 
 const controlSearch = value => {
-  console.log('🪃', value);
   MatchView.clearResults();
   loadAndRenderCountry(value);
 };

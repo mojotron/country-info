@@ -8,11 +8,11 @@ export const state = {
 const getJSON = async url => {
   try {
     const response = await fetch(url);
-    // error bad request
+    if (!response.ok) throw new Error('Network error, please try again!');
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     throw error;
   }
 };
@@ -28,15 +28,15 @@ const loadAllCountries = async url => {
       } = country;
       return { name, flag, code };
     });
+    state.countries.sort((a, b) => a.name > b.name);
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };
 
 export const loadTargetCountry = async country => {
   try {
-    const [data] = await getJSON(URL_API + URL_API_ALPHA + country);
+    const [data] = await getJSON(`${URL_API + URL_API_ALPHA + country}`);
 
     state.country = {
       name: data.name.common,
@@ -49,7 +49,6 @@ export const loadTargetCountry = async country => {
       ...(data.capital && { capital: data.capital[0] }),
     };
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

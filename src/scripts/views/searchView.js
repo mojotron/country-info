@@ -21,7 +21,7 @@ class SearchView {
       const firstMatch = document.querySelector(`.${MATCH_CLASS_NAME}`);
       if (!firstMatch) return;
       this.clearInput();
-      handler(firstMatch.textContent);
+      handler(firstMatch.dataset.countryCode);
     });
   }
 }
