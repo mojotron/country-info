@@ -22,5 +22,6 @@ For the map this project is using [Leaflet](https://leafletjs.com/) library.
 - building basic search functionality
 - working with REST API and library's, exploring documentation.
 - using html template tag and creating dynamic elements using document fragment and cloneNode method.
+- multiple webpack bundles (main, vendor for 3rd party libraries)
 
 For the project architecture it is used MCV pattern and publisher-subscriber patterns.

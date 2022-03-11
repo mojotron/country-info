@@ -11,6 +11,8 @@
   "rules": {
     "import/no-extraneous-dependencies": "warn",
     "class-methods-use-this": "warn",
-    "no-useless-catch": "off"
+    "no-useless-catch": "off",
+    "no-undef": "off", // for vendor webpack bundle
+    "no-unused-vars": "off" // for vendor webpack bundle
   }
 }

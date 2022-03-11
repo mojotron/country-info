@@ -1,6 +1,3 @@
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
 class CountryView {
   #parentElement = document.querySelector('.countries');
 
@@ -77,6 +74,7 @@ class CountryView {
   }
 
   #generateMap(data) {
+    // import of leaflet (L) library is in vendor.js
     const icon = L.icon({
       iconSize: [38, 95],
       iconAnchor: [22, 94],
