@@ -177,7 +177,7 @@ body {
   color: var(--white);
 }
 .map-popup {
-  background-color: var(--black-green);
+  background: var(--black-green);
 }
 .error {
   font-size: 2.5rem;
