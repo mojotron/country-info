@@ -1,5 +1,7 @@
 # Country Info
 
+View project online [here](https://mojotron.github.io/country-info/).
+
 Goal of this project was learning and implement asynchronous code in JS, and working with REST APIs. For this project [rest countries](https://restcountries.com/) API is used. This API return information's about countries.
 
 After loading the page, application is starting with first async call to the API. Fetching basic data about all countries (name, flag src path, and cca3 country code). This data is used for creating match elements when user starts to type characters in the search bar. Rendering all countries staring with typed pattern is displayed in the list.
